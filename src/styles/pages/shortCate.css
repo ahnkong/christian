@@ -1,0 +1,64 @@
+.shortcate-header {
+    display: flex;
+    align-items: center;  /* 요소 세로 정렬 */
+    justify-content: space-between; /* 좌우 정렬 */
+    padding: 10px 16px;
+}
+
+.back-button {
+    width: 24px;  /* 백버튼 크기 조절 */
+    height: 24px;
+    cursor: pointer;
+}
+
+.shortcate-header h3 {
+    flex-grow: 1; /* 제목이 가운데 정렬되도록 */
+    text-align: center;
+    color: blue;
+    font-size: 1rem;
+}
+
+
+
+/* 🔍 검색창 스타일 */
+.search-container {
+    width: 100%;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .search-input {
+    width: 90%;
+    padding: 10px;
+    height: 30px;
+    text-indent: 4%;
+    margin-right: 4%;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    outline: none;
+  }
+
+  
+
+.shortcate-container{
+    width: 90%;
+    box-sizing: border-box;
+}
+
+.shortcate-title{
+    margin-top: 5%;
+    margin-left: 5%;
+    font-size: 1.2rem;
+    color: gray;
+}
+
+.shortcate-item .question{
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.item-divider{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}

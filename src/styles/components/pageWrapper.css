@@ -1,0 +1,9 @@
+.pageWrapper {
+    width: 100%;  /* ✅ 가로 제한 */
+    max-width: 600px;  /* ✅ 최대 너비 설정 (모바일 기준) */
+    height: 100vh;
+    margin: 0 auto;  /* ✅ 중앙 정렬 */
+    overflow-x: hidden;  /* ✅ 가로 스크롤 방지 */
+    padding: 4%; /* ✅ 내부 패딩 유지 */
+    box-sizing: border-box; /* ✅ 패딩이 width를 초과하지 않도록 */
+}
