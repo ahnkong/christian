@@ -1,0 +1,162 @@
+/* ✅ 전체 페이지 스타일 */
+.header_home {
+    display: flex;
+    flex-direction: column;
+    padding: 8%;
+    background-color: #333;
+}
+
+.header_home h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+  /* ✅ 검색창 스타일 */
+  .header_search_form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 5%;
+    max-width: 400px;
+}
+
+.header_search {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+  }
+  
+  .header_btn_search {
+    padding: 10px 15px;
+    border: none;
+    background-color: #4a90e2;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .header_btn_search:hover {
+    background-color: #357ab8;
+  }
+
+  .home_btn_topic{
+    display: flex;
+    width: 90%;
+    }
+    .home_btn_topic .topic_western, 
+    .home_btn_topic .topic_hidel {
+      background-color: yellow;
+      border-radius: 20px;
+      padding: 3%;
+      text-align: center;
+      margin-right: 4%;
+      width: 100px;
+    }
+    
+
+    .section_home_container{
+        padding : 8%;
+    }
+
+    .section_home_container p{
+        font-size: 2rem;
+        margin-top: 0px;
+        font-weight: bold;
+    }
+    .main_card {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+
+      }
+      
+      .card {
+        width: 90%;
+        height: 200px;
+        max-width: 350px;
+        padding: 4%;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+      }
+      /* ✅ 카드 내부 배치 (가로 정렬) */
+.card_body {
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 15px; /* 이미지와 텍스트 사이 여백 */
+  }
+  
+  /* ✅ 아이콘 스타일 */
+  .card_icon {
+    width: 60px;
+    height: auto;
+  }
+  
+  /* ✅ 텍스트 스타일 */
+  .card_text {
+    font-size: 1rem;
+    color: #444;
+    flex: 1; /* 남은 공간을 차지하여 균형 맞추기 */
+  }
+  
+      /* ✅ 배경색 */
+      .yellow {
+        background-color: #fbe999;
+      }
+      
+      .blue {
+        background-color: #a7c7f5;
+      }
+      
+      .card_content{
+        padding: 2%;
+      }
+      
+      /* ✅ 상단 배지 스타일 */
+      .badge {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background-color: #c24c4c;
+        color: white;
+        font-weight: bold;
+        height: 40px;
+        padding: 5px 10px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+      }
+      
+      
+      /* ✅ 제목 */
+      .card h3 {
+        font-size: 1.6rem;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      .card_icon{
+        width: 100px;
+      }
+      
+      /* ✅ 설명 텍스트 */
+      .card p {
+        font-size: 1.2rem;
+        color: #444;
+        margin-top: 5px;
+      }
+      
