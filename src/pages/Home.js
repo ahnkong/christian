@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BackgroundWrapper from "../components/BackgroundWrapper";
-import "../styles/pages/home.css"
-import PageWrapper from "../components/PageWrapper";
+import "../styles/pages/home.css";
 
-import HeartIcon from "../assets/image/imageHeart.png"
-import BibleIcon from "../assets/image/imageBible.png"
+import HeartIcon from "../assets/image/imageHeart.png";
+import BibleIcon from "../assets/image/imageBible.png";
+import ImageBook from "../assets/image/imageBook.png";
 
+/** ✅ 문답 카드 데이터 */
 const catechismCards = [
   {
     id: 1,
+    category: "웨스터민스터",
     title: "소요리 문답",
     number: "107",
     description: "자녀들과 평신도들을 교육하기 위한 소요리 문답",
@@ -19,6 +21,7 @@ const catechismCards = [
   },
   {
     id: 2,
+    category: "웨스터민스터",
     title: "대요리 문답",
     number: "196",
     description: "목회자와 평신도들을 위한 문답",
@@ -26,61 +29,75 @@ const catechismCards = [
     icon: BibleIcon,
     url: "/larger-catechism"
   },
+  {
+    id: 3,
+    category: "하이델베르크",
+    title: "하이델베르크 문답",
+    number: "129",
+    description: "기독교의 기본 교리",
+    background: "green",
+    icon: ImageBook,
+    url: "/heidelberg-catechism"
+  },
 ];
 
 const Home = () => {
   const navigate = useNavigate();
-  const [shorterCatechism, setShorterCatechism] = useState([]);
+  const [selectedTopic, setSelectedTopic] = useState("웨스터민스터");
 
-  useEffect(() => {
-    fetch("/data/shorterCatechism.json")
-      .then((response) => {
-        console.log("🔍 응답 상태 코드:", response.status);
-        return response.text();
-      })
-      .then((text) => {
-        console.log("📄 응답 데이터:", text);
-        return JSON.parse(text);
-      })
-      .then((data) => setShorterCatechism(data.shorterCatechism))
-      .catch((error) => console.error("🚨 JSON 로드 오류:", error));
-  }, []);
+  /** ✅ 선택된 주제에 따라 필터링 */
+  const filteredCards = catechismCards.filter(card => card.category === selectedTopic);
 
   return (
     <BackgroundWrapper type="white">
-      {/* <PageWrapper type="home"> */}
       <header className="header_home">
         <h1>Christian to God</h1>
-        <form className="header_search_form">
-          <input className="header_search" type="text" placeholder="검색어를 입력하세요" />
-          <button className="header_btn_search" type="button">검색</button>
-        </form>
+        <p className="header_description">공부하고 싶은 주제를 선택하세요</p>
 
-      <section className="home_btn_topic">
-        <p className="topic_western">웨스터민스터</p>
-        <p className="topic_hidel">하이델베르크</p>
-      </section> 
+        {/* ✅ 슬라이드 토글 버튼 */}
+        <div className="toggle-switch">
+          <div className="toggle-bg">
+            <div 
+              className={`toggle-slider ${selectedTopic === "하이델베르크" ? "right" : "left"}`}
+            />
+            <button
+              className={`toggle-option ${selectedTopic === "웨스터민스터" ? "active" : ""}`}
+              onClick={() => setSelectedTopic("웨스터민스터")}
+            >
+              웨스터민스터
+            </button>
+            <button
+              className={`toggle-option ${selectedTopic === "하이델베르크" ? "active" : ""}`}
+              onClick={() => setSelectedTopic("하이델베르크")}
+            >
+              하이델베르크
+            </button>
+          </div>
+        </div>
       </header>
-          
+
       <main className="section_home_container">
-        <p>웨스트 민스터</p>
+        <p className="section_title">{selectedTopic}</p>
         <div className="main_card">
-          {catechismCards.map((card) => (
-          <div key={card.id} className={`card ${card.background}`} onClick={() => navigate(card.url)}>
-            <div className="card_content">
-              <span className="badge">{card.number}</span>
-              <h3>{card.title}</h3>
-              <div className="card_body">
-                <img src={card.icon} className="card_icon" alt="icon" />
-                <p className="card_text">{card.description}</p>
+          {filteredCards.map((card) => (
+            <div key={card.id} className={`card ${card.background}`} onClick={() => navigate(card.url)}>
+              <div className="card_content">
+                {/* <span className="badge">{card.number}</span> */}
+                <h3>{card.title}</h3>
+                <div className="card_body">
+                  <img src={card.icon} className="card_icon" alt="icon" />
+                  <p className="card_text">{card.description}</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
         </div>
-    </main>
-    {/* </PageWrapper> */}
+              <footer className="footer-home">
+               <p>©codequest 2025 Christian to God. </p>
+              </footer>
+      </main>
     </BackgroundWrapper>
   );
 };
+
 export default Home;

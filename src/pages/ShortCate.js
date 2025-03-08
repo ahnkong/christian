@@ -31,16 +31,14 @@ const ShortCate = () => {
   return (
     <BackgroundWrapper type="white">
       <PageWrapper type="default">
-        {/* ✅ 헤더 영역 (뒤로 가기 버튼 + 제목 + 검색창) */}
-        <header className="shortcate-header">
-        <img 
-            src={IconBackButton} 
-            alt="뒤로 가기"
-            className="back-button"
-            onClick={() => navigate("/")}
-        />
-        <h3 className="title">Christian to God</h3>
-        </header>
+      {/* ✅ 헤더 영역 (뒤로 가기 버튼 + 제목 + 검색창) */}
+      <div className="shortcate-section-container">
+        <div className="shortcate-header">
+          <button className="back-button" onClick={() => navigate(-1)}>
+            <img src={IconBackButton} alt="뒤로 가기" />
+          </button>
+          <h3 className="title">Christian to God</h3>
+        </div>
 
         {/* ✅ 검색창 추가 */}
         <div className="search-container">
@@ -52,22 +50,23 @@ const ShortCate = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
+      </div>
 
-        {/* ✅ 문답 목록 */}
-        <main className="shortcate-container">
-          <h2 className="shortcate-title">웨스트민스터 소요리문답</h2>
-          <ul className="shortcate-list">
-            {filteredQuestions.map((q) => (
-              <li key={q.id} className="shortcate-item" onClick={() => navigate(`/shorter-catechism/${q.id}`)}>
-                <span className="pin">📌 </span>
-                <span className="question" style={{ whiteSpace: "normal", wordBreak: "break-word" }}>
-                  {q.id}문) {q.question}
-                </span>
-                <hr className="item-divider" />
-              </li>
-            ))}
-          </ul>
-        </main>
+      {/* ✅ 문답 목록 */}
+      <main className="shortcate-container">
+        <h2 className="shortcate-title">웨스트민스터 소요리문답</h2>
+        <ul className="shortcate-list">
+          {filteredQuestions.map((q) => (
+            <li key={q.id} className="shortcate-item" onClick={() => navigate(`/shorter-catechism/${q.id}`)}>
+              <span className="pin">📌 </span>
+              <span className="question" style={{ whiteSpace: "normal", wordBreak: "break-word" }}>
+                {q.id}문) {q.question}
+              </span>
+              <hr className="item-divider" />
+            </li>
+          ))}
+        </ul>
+      </main>
       </PageWrapper>
     </BackgroundWrapper>
   );

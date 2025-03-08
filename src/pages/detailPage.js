@@ -80,7 +80,7 @@ const DetailPage = () => {
         </header>
         <main className="detail-container">
           <h2 className="detail-title">
-            <span className="pin"></span>📌 {catechism.id}문 : {catechism.question}
+            <span className="pin"></span>📌  {catechism.id}문 : {catechism.question}
           </h2>
           <div className="detail-content">
             <p className="detail-answer">{catechism.answer}</p>
