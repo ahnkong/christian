@@ -5,6 +5,7 @@
   padding: 8%;
   background-color: #333;
   border-radius: 0 0 10% 10%;
+  box-sizing: border-box;
 }
 
 .header_home h1 {
@@ -240,6 +241,7 @@
 }
 .card_content {
   padding: 2%;
+  box-sizing: border-box;
 }
 
 /* ✅ 상단 배지 스타일 */
@@ -292,4 +294,9 @@
   color : black;
   font-size: 14px;
   margin-top: 40px;
+}
+@media (prefers-reduced-motion: reduce) {
+  body {
+    font-size: larger;
+  }
 }

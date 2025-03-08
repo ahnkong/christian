@@ -21,6 +21,9 @@
     width: 100%;
     max-width: 100%;
     padding: 7%;  /* ✅ 내부 여백 조절 */
+    overflow-wrap: break-word; /* 긴 단어도 줄바꿈 */
+    word-break: break-word; /* 단어가 너무 길면 강제 줄바꿈 */
+    white-space: normal; /* 텍스트가 부모 크기를 초과하면 자동 줄바꿈 */
     box-sizing: border-box; /* ✅ 패딩 포함하여 크기 유지 */
     overflow-x: hidden;  /* ✅ 가로 스크롤 제거 */
 }
@@ -44,6 +47,7 @@
     line-height: 1.5;
     margin-bottom: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-sizing: content-box;
 
   }
   
