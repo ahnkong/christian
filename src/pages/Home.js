@@ -76,13 +76,12 @@ const Home = () => {
         </div>
       </header>
 
-      <main className="section_home_container">
+      <div className="section_home_container">
         <p className="section_title">{selectedTopic}</p>
         <div className="main_card">
           {filteredCards.map((card) => (
             <div key={card.id} className={`card ${card.background}`} onClick={() => navigate(card.url)}>
-              <div className="card_content">
-                {/* <span className="badge">{card.number}</span> */}
+              <div className="card_content"> 
                 <h3>{card.title}</h3>
                 <div className="card_body">
                   <img src={card.icon} className="card_icon" alt="icon" />
@@ -93,9 +92,9 @@ const Home = () => {
           ))}
         </div>
               <footer className="footer-home">
-               <p>©codequest 2025 Christian to God. </p>
+               <p>©codequest.ahncoco 2025 Christian to God. </p>
               </footer>
-      </main>
+      </div>
     </BackgroundWrapper>
   );
 };

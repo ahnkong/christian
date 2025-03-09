@@ -53,21 +53,18 @@ const DetailPage = () => {
 
   return (
     <BackgroundWrapper type="white">
-      <PageWrapper type="default">
+      <PageWrapper type="default" id="detailPage" className="detailPage">
         <header className="detail-header">
-          <img 
-            src={IconBackButton} 
-            alt="뒤로 가기"
+          <img
             className="back-button"
+            src={IconBackButton}
+            alt="뒤로 가기"
             onClick={() => navigate("/shorter-catechism")}
           />
           <h1 className="title">Christian to God</h1>
-          {/* ✅ 메뉴 버튼 (클릭 시 토글) */}
           <div className="menu-container">
-            <img 
-              src={IconMenu} 
-              alt="메뉴 아이콘" 
-              className="IconMenu" 
+            <img
+              src={IconMenu} alt="메뉴 아이콘" className="IconMenu"
               onClick={() => setMenuOpen(!menuOpen)} // ✅ 메뉴 열기/닫기
             />
             {menuOpen && (
@@ -78,16 +75,26 @@ const DetailPage = () => {
             )}
           </div>
         </header>
-        <main className="detail-container">
-          <h2 className="detail-title">
-            <span className="pin"></span>📌  {catechism.id}문 : {catechism.question}
+
+        {/* 메인 */}
+        <section className="detailMain-container">
+          {/* <h2 className="shortcate-title">웨스트민스터 소요리문답</h2> */}
+          <h2 className="main-title">
+            <span className="pin">📌 {catechism.id}문<br /></span>
+            <span clsssName="pin_content">{catechism.question}</span>
           </h2>
+        </section>
+
+        <section className="detailMain-answer-container">
           <div className="detail-content">
             <p className="detail-answer">{catechism.answer}</p>
+            <span className="pin_moreExplain"> + 해설보기</span>
           </div>
+        </section>
 
-           
-          {/* ✅ 성경 구절 태그 버튼 */}
+
+        {/* ✅ 성경 구절 태그 버튼 */}
+        <section className="tag-container">
           <div className="verses-scroll">
             {catechism.verses.map((verse, index) => (
               <button
@@ -100,7 +107,6 @@ const DetailPage = () => {
             ))}
           </div>
 
-          {/* ✅ 선택한 성경 구절 표시 */}
           {/* ✅ 선택된 성경 구절 기본 표시 */}
           {selectedVerse && (
             <div className="verse-box">
@@ -109,29 +115,33 @@ const DetailPage = () => {
             </div>
           )}
 
-
-          {/* <div className="detail-buttons">
+        </section>
+        {/* <div className="detail-buttons">
             <button className="prev-button" disabled={parseInt(id) === 1}>이전</button>
             <button className="next-button" disabled={parseInt(id) === catechismList.length}>다음</button>
           </div> */}
-          <div className="detail-buttons">
-            {/* ✅ 이전 버튼 (첫 번째 문답이면 비활성화) */}
-            <button 
-              className="prev-button" 
-              onClick={() => {
-                const prevId = parseInt(id) - 1;
-                if (prevId >= 1) {
-                  navigate(`/shorter-catechism/${prevId}`);
-                }
-              }}
-              disabled={parseInt(id) === 1}
-            >
-              이전
-            </button>
+
+        <section className="buttons-container">
+          <div className="button-container">
+            <p> * 문답 이동 버튼 * </p>
+            <div className="detail-buttons">
+              {/* ✅ 이전 버튼 (첫 번째 문답이면 비활성화) */}
+              <button
+                className="prev-button"
+                onClick={() => {
+                  const prevId = parseInt(id) - 1;
+                  if (prevId >= 1) {
+                    navigate(`/shorter-catechism/${prevId}`);
+                  }
+                }}
+                disabled={parseInt(id) === 1}
+              >
+                이전
+              </button>
 
               {/* ✅ 다음 버튼 (마지막 문답이면 비활성화) */}
-              <button 
-                className="next-button" 
+              <button
+                className="next-button"
                 onClick={() => {
                   const nextId = parseInt(id) + 1;
                   if (nextId <= catechismList.length) {
@@ -142,93 +152,12 @@ const DetailPage = () => {
               >
                 다음
               </button>
-           </div>
-
-        </main>
+            </div>
+          </div>
+        </section>
       </PageWrapper>
     </BackgroundWrapper>
   );
 };
 
 export default DetailPage;
-
-
-
-// import React, { useState, useEffect } from "react";
-// import { useParams, useNavigate, useLocation } from "react-router-dom";
-// import BackgroundWrapper from "../components/BackgroundWrapper";
-// import "../styles/pages/detailPage.css";
-// import BackButton from "../components/BackButton";
-// import PageWrapper from "../components/PageWrapper";
-// import IconMenu from "../assets/icon/IconMenu.png"
-
-// const DetailPage = () => {
-//   const { id } = useParams();
-//   const navigate = useNavigate();
-//   const location = useLocation();
-//   const [catechismList, setCatechismList] = useState([]);
-//   const [catechism, setCatechism] = useState(null);
-
-//   useEffect(() => {
-//     fetch("/data/shorterCatechism.json")
-//       .then((response) => response.json())
-//       .then((data) => {
-//         setCatechismList(data.shorterCatechism);
-//         const selectedCatechism = data.shorterCatechism.find((q) => q.id === parseInt(id));
-//         setCatechism(selectedCatechism);
-//       })
-//       .catch((error) => console.error("🚨 JSON 로드 오류:", error));
-//   }, [id]);
-
-//   const handleNavigation = (direction) => {
-//     const currentIndex = catechismList.findIndex((q) => q.id === parseInt(id));
-//     if (direction === "prev" && currentIndex > 0) {
-//       navigate(`/shorter-catechism/${catechismList[currentIndex - 1].id}`);
-//     } else if (direction === "next" && currentIndex < catechismList.length - 1) {
-//       navigate(`/shorter-catechism/${catechismList[currentIndex + 1].id}`);
-//     }
-//   };
-
-//   if (!catechism) {
-//     return <p>문답 데이터를 불러오는 중...</p>;
-//   }
-
-//   return (
-//     <BackgroundWrapper type="white">
-//       <PageWrapper type="default">
-//       <header className="detail-header">
-//         <BackButton 
-//             onClick={() => location.pathname.includes("shorter-catechism") 
-//             ? navigate("/shorter-catechism")  // ✅ ShortCate로 이동
-//             : navigate(-1)  // ✅ 이전 페이지로 이동
-//             } 
-//         />
-//           <h1 className="title">Christian to God</h1>
-//           <img src={IconMenu} alt="메뉴 아이콘" className="IconMenu" />
-//         </header>
-//         <main className="detail-container">
-//           <h2 className="detail-title">
-//             <span className="pin">📌</span> {catechism.id}문 : {catechism.question}
-//           </h2>
-//           <div className="detail-content">
-//             <p className="detail-answer">답 : {catechism.answer}</p>
-//           </div>
-//           <div className="detail-verses">
-//             {catechism.verses.map((verse, index) => (
-//               <div key={index} className="verse-card">
-//                 <span className="verse-reference">{verse.book} {verse.chapter}:{verse.verse}</span>
-//                 <p className="verse-text">{verse.text}</p>
-//               </div>
-//             ))}
-//           </div>
-//           <div className="detail-buttons">
-//             <button className="prev-button" onClick={() => handleNavigation("prev")} disabled={parseInt(id) === 1}>이전</button>
-//             <button className="next-button" onClick={() => handleNavigation("next")} disabled={parseInt(id) === catechismList.length}>다음</button>
-//           </div>
-//         </main>
-//       </PageWrapper>
-//     </BackgroundWrapper>
-//   );
-// };
-
-// export default DetailPage;
