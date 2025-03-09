@@ -9,14 +9,16 @@ import Search from "./pages/Search";
 import ShortCate from "./pages/ShortCate";
 import LargeCate from "./pages/LargeCate";
 import DetailPage from "./pages/detailPage";
+import InitPage from "./pages/InitPage";
+
 
 const App = () => {
   return (
     <Router> {/* ✅ BrowserRouter로 감싸기 */}
       <Routes> {/* ✅ Route들을 Routes로 감싸기 */}
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<InitPage />} />
         <Route path="/search" element={<Search />} />
-
+        <Route path="/home" element={<Home />} />
         <Route path="/shorter-catechism/:id" element={<DetailPage />} /> {/* ✅ 동적 라우트 */}
         <Route path="/shorter-catechism" element={<ShortCate />} />
         <Route path="/large-catechism" element={<LargeCate />} />
