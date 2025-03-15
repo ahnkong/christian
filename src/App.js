@@ -21,8 +21,8 @@ const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/shorter-catechism/:id" element={<DetailPage />} /> {/* ✅ 동적 라우트 */}
         <Route path="/shorter-catechism" element={<ShortCate />} />
-        <Route path="/large-catechism" element={<LargeCate />} />
-
+        <Route path="/larger-catechism" element={<LargeCate />} />
+        <Route path="/larger-catechism/:id" element={<DetailPage />} /> {/* ✅ 동적 라우트 */}
       </Routes>
     </Router>
   );

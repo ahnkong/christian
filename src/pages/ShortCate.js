@@ -37,7 +37,7 @@ const ShortCate = () => {
             <div className="header-container">
               <img
                 src={IconBackButton} alt="뒤로 가기" className="back-button"
-                onClick={() => navigate("/shorter-catechism")}
+                onClick={() => navigate("/home")}
               />
               <h1 className="title">Christian to God</h1>
               <div className="menu-container">
@@ -73,15 +73,15 @@ const ShortCate = () => {
 
         {/* ✅ 문답 목록 */}
         <main className="shortcate-container">
-          <h2 className="shortcate-title">웨스트민스터 소요리문답</h2>
+          <p className="shortcate-title">웨스트민스터 소요리문답</p>
           <ul className="shortcate-list">
             {filteredQuestions.map((q) => (
               <p key={q.id} className="shortcate-item" onClick={() => navigate(`/shorter-catechism/${q.id}`)}>
-                <span className="pin">✅ </span>
+                <span className="pin">📌 </span>
                 <span className="question" style={{ whiteSpace: "normal", wordBreak: "break-word" }}>
-                  {q.id}문 ) {q.question}
+                  {q.id}문 {q.question}
                 </span>
-                <hr className="item-divider" />
+                <div className="item-divider" />
               </p>
             ))}
           </ul>

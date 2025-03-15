@@ -5,6 +5,7 @@ import PageWrapper from "../components/PageWrapper";
 import IconHeart from "../assets/image/imageHeart.png"
 import "../styles/pages/initPage.css"
 import IconJesus from "../assets/image/imageJesus.png"
+import IconSheep from "../assets/image/imageSheep.png"
 const InitPage = () => {
     const navigate = useNavigate();
     const [fadeOut, setFadeOut] = useState(false);
@@ -31,7 +32,7 @@ const InitPage = () => {
         <div className={`initPage-container ${fadeOut ? "fadeOut" : ""}`}>
             <header className="initPage-header">Christian to God </header>
             <main className="initPage-image-container">
-                <img src={IconJesus} alt="손으로 하트를 감싸고 있는 모양" className="initPage-image" />
+                <img src={IconSheep} alt="손으로 하트를 감싸고 있는 모양" className="initPage-image" />
             </main>
             <footer className="initPage-footer">하나님의 말씀 안에서 믿음을 다지고, 교리로 신앙을 더욱 깊이 있게!</footer>
         </div>
