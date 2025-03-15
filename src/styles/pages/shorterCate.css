@@ -1,5 +1,5 @@
 /* ✅ 헤더 전체 스타일 */
-.shortcate-section-container {
+.shorterCate-section-container {
     width: 100%;
     max-width: 412px;
     background-color: rgb(47, 47, 47);
@@ -7,7 +7,7 @@
     position: fixed;
     box-sizing: border-box;
 }
-.shortcate-section-header{
+.shorterCate-section-header{
     background-color: rgb(47, 47, 47);
 }
 /* ✅ 첫 번째 줄 (백버튼 + 제목 + 메뉴 버튼) */
@@ -101,13 +101,13 @@
 }
 
 
-.shortcate-container{
+.shorterCate-container{
     margin-top: 160px;
     width: 90%;
     box-sizing: border-box;
 }
 
-.shortcate-title {
+.shorterCate-title {
     margin-top: 5px;
     margin-left: 25px;
     font-size: clamp(0.9em, 2em, 0.9rem);  
@@ -115,7 +115,7 @@
     color: gray;
 }
 
-.shortcate-item .question{
+.shorterCate-item .question{
     font-size: clamp(0.9rem, 1.3em, 1.1rem);
     font-weight: normal;
     box-sizing: border-box;

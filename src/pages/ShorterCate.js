@@ -7,20 +7,20 @@ import PageWrapper from "../components/PageWrapper";
 
 
 import IconBackButton from "../assets/icon/IconBackButton.png"
-import "../styles/pages/shortCate.css";
+import "../styles/pages/shorterCate.css";
 import IconMenu from "../assets/icon/IconMenu.png"
 import IconSearch from "../assets/icon/IconSearch.png"
 
-const ShortCate = () => {
+const ShorterCate = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false); // ✅ 메뉴 상태 추가
-  const [shorterCatechism, setShorterCatechism] = useState([]);
+  const [shorterCatechism, setshorterCatechism] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetch("/data/shorterCatechism.json")
       .then((response) => response.json())
-      .then((data) => setShorterCatechism(data.shorterCatechism))
+      .then((data) => setshorterCatechism(data.shorterCatechism))
       .catch((error) => console.error("🚨 JSON 로드 오류:", error));
   }, []);
 
@@ -32,8 +32,8 @@ const ShortCate = () => {
   return (
     <BackgroundWrapper type="white">
       <PageWrapper type="default">
-        <div className="shortcate-section-container">
-          <header className="shortcate-section-header">
+        <div className="shorterCate-section-container">
+          <header className="shorterCate-section-header">
             <div className="header-container">
               <img
                 src={IconBackButton} alt="뒤로 가기" className="back-button"
@@ -72,11 +72,11 @@ const ShortCate = () => {
         </div>
 
         {/* ✅ 문답 목록 */}
-        <main className="shortcate-container">
-          <p className="shortcate-title">웨스트민스터 소요리문답</p>
-          <ul className="shortcate-list">
+        <main className="shorterCate-container">
+          <p className="shorterCate-title">웨스트민스터 소요리문답</p>
+          <ul className="shorterCate-list">
             {filteredQuestions.map((q) => (
-              <p key={q.id} className="shortcate-item" onClick={() => navigate(`/shorter-catechism/${q.id}`)}>
+              <p key={q.id} className="shorterCate-item" onClick={() => navigate(`/shorter-catechism/${q.id}`)}>
                 <span className="pin">📌 </span>
                 <span className="question" style={{ whiteSpace: "normal", wordBreak: "break-word" }}>
                   {q.id}문 {q.question}
@@ -91,4 +91,4 @@ const ShortCate = () => {
   );
 };
 
-export default ShortCate;
+export default ShorterCate;

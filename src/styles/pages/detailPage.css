@@ -16,7 +16,7 @@
 .detail-header .title {
   flex-grow: 1;
   text-align: center;
-  font-size: 16px;
+  /* font-size: 16px; */
   font-weight: bold;
   color: #f7f7f7;
 }
@@ -32,16 +32,10 @@
   box-sizing: border-box;
 }
 
-.shortcate-title {
-  font-size: clamp(1.3rem, 1.4rem, 1.4rem);
-  text-decoration: underline;
-  color: rgb(165, 165, 165);
-}
 
 .main-title {
-  font-size: clamp(1.2rem, 1.2rem, 1.3rem);
+  font-size: clamp(1rem, 1rem, 1.5rem);
   font-weight: bold;
-  margin-top: 0px;
   display: column;
   align-items: center;
   gap: 10px;
@@ -50,14 +44,21 @@
 .main-title .pin {
   font-size: clamp(1rem, 1rem, 1.2rem);
   background-color: #404040;
-  /* 노란색 강조 */
   border-radius: 10px;
-  padding: 2% 4%;
+  padding: 2% 3%;
   line-height: 3;
   margin-top: 0;
   color: rgb(255, 255, 255);
-  
 }
+
+.pin-content{
+  font-size: clamp(1.3rem, 1.2rem, 1.3rem);
+  line-height: 1.5;
+  color: #150bdc;
+}
+
+
+
 
 .detailMain-answer-container {
   display: flex;
@@ -66,16 +67,17 @@
   box-sizing: border-box;
   padding: 15px;
   align-items: center;
-  margin-top: 200px;
+  margin-top: 230px;
+
 }
 
 
 .detail-content {
   min-height: 200px;
-  background: #f8f8f8;
+  background: #ffffff;
   padding: 8%;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: clamp(1rem, 3rem, 1.3rem);
   line-height: 1.5;
   margin-bottom: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -85,8 +87,7 @@
 
 .detail-answer {
   font-weight: bold;
-  /* font-size: 1.2rem; */
-  font-size: clamp(1rem, 1.2rem, 1.5rem);
+  font-size: clamp(1rem, 2rem, 1.3rem);
 }
 
 .pin_moreExplain {
@@ -108,18 +109,17 @@
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  font-size: 0.9rem;
 }
 
 .verse-reference {
   font-weight: bold;
   color: blue;
-  font-size: clamp(1rem, 1.1rem, 1.3rem);
-
+  /* font-size: clamp(1rem, 1rem, 1.2rem); */
+  font-size: 16px;
 }
 
 .verse-text {
-  font-size: clamp(1rem, 1.1rem, 1.3rem);
+  font-size: clamp(1rem, 1rem, 1.2rem);
 
 }
 

@@ -9,7 +9,7 @@ import IconBackButton from "../assets/icon/IconBackButton.png";
 
 
 const DetailPage = () => {
-  const { id } = useParams();
+  const {type, id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const [catechismList, setCatechismList] = useState([]);
@@ -17,21 +17,32 @@ const DetailPage = () => {
   const [selectedVerse, setSelectedVerse] = useState(null);
   const [isFlipped, setIsFlipped] = useState(false); // 카드 뒤집기 상태
   const [menuOpen, setMenuOpen] = useState(false); // ✅ 메뉴 상태 추가
+ 
+ 
   useEffect(() => {
-    fetch("/data/shorterCatechism.json")
+    const catechismFile =
+      type === "larger-catechism" ? "/data/largerCatechism.json" : "/data/shorterCatechism.json";
+
+    fetch(catechismFile)
       .then((response) => response.json())
       .then((data) => {
-        setCatechismList(data.shorterCatechism);
-        const selectedCatechism = data.shorterCatechism.find((q) => q.id === parseInt(id));
+        console.log("✅ JSON 데이터 확인:", data); // ✅ 데이터 로드 확인
+        const catechismData = type === "larger-catechism" ? data.largerCatechism : data.shorterCatechism;
+        console.log("✅ 선택된 문답 목록:", catechismData); // ✅ 변환된 데이터 확인
+
+        setCatechismList(catechismData);
+
+        const selectedCatechism = catechismData.find((q) => q.id === parseInt(id));
+        console.log("✅ 선택된 문답:", selectedCatechism); // ✅ 선택된 문답 확인
         setCatechism(selectedCatechism);
 
-        // ✅ 첫 번째 성경 구절이 기본으로 보이게 설정
-        if (selectedCatechism.verses.length > 0) {
+        if (selectedCatechism?.verses?.length > 0) {
           setSelectedVerse(selectedCatechism.verses[0]);
         }
       })
       .catch((error) => console.error("🚨 JSON 로드 오류:", error));
-  }, [id]);
+  }, [type, id]);
+
 
 
   const handleVerseClick = (verse) => {
@@ -47,10 +58,6 @@ const DetailPage = () => {
   }
 
 
-  if (!catechism) {
-    return <p>문답 데이터를 불러오는 중...</p>;
-  }
-
   return (
     <BackgroundWrapper type="white">
       <PageWrapper type="default" id="detailPage" className="detailPage">
@@ -59,7 +66,7 @@ const DetailPage = () => {
             className="back-button"
             src={IconBackButton}
             alt="뒤로 가기"
-            onClick={() => navigate("/shorter-catechism")}
+            onClick={() => navigate(`/${type}`)} // ✅ 뒤로 가기 경로 수정
           />
           <h1 className="title">Christian to God</h1>
           <div className="menu-container">
@@ -69,7 +76,7 @@ const DetailPage = () => {
             />
             {menuOpen && (
               <div className="dropdown-menu">
-                <button onClick={() => navigate("/")}>🏠 홈으로</button>
+                <button onClick={() => navigate("/home")}>🏠 홈으로</button>
                 <button onClick={() => navigate("/shorter-catechism")}>🔍 검색</button>
               </div>
             )}
@@ -81,7 +88,7 @@ const DetailPage = () => {
           {/* <h2 className="shortcate-title">웨스트민스터 소요리문답</h2> */}
           <h2 className="main-title">
             <span className="pin">📌 {catechism.id}문<br /></span>
-            <span clsssName="pin_content">{catechism.question}</span>
+            <p className="pin-content">{catechism.question}</p>
           </h2>
         </section>
 
@@ -128,26 +135,14 @@ const DetailPage = () => {
               {/* ✅ 이전 버튼 (첫 번째 문답이면 비활성화) */}
               <button
                 className="prev-button"
-                onClick={() => {
-                  const prevId = parseInt(id) - 1;
-                  if (prevId >= 1) {
-                    navigate(`/shorter-catechism/${prevId}`);
-                  }
-                }}
+                onClick={() => navigate(`/${type}/${parseInt(id) - 1}`)}
                 disabled={parseInt(id) === 1}
               >
                 이전
               </button>
-
-              {/* ✅ 다음 버튼 (마지막 문답이면 비활성화) */}
               <button
                 className="next-button"
-                onClick={() => {
-                  const nextId = parseInt(id) + 1;
-                  if (nextId <= catechismList.length) {
-                    navigate(`/shorter-catechism/${nextId}`);
-                  }
-                }}
+                onClick={() => navigate(`/${type}/${parseInt(id) + 1}`)}
                 disabled={parseInt(id) === catechismList.length}
               >
                 다음

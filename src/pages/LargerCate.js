@@ -7,11 +7,11 @@ import PageWrapper from "../components/PageWrapper";
 
 
 import IconBackButton from "../assets/icon/IconBackButton.png"
-import "../styles/pages/largeCate.css";
+import "../styles/pages/largerCate.css";
 import IconMenu from "../assets/icon/IconMenu.png"
 import IconSearch from "../assets/icon/IconSearch.png"
 
-const LargeCate = () => {
+const LargerCate = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false); // ✅ 메뉴 상태 추가
   const [largeCatechism, setLargeCatechism] = useState([]);
@@ -20,9 +20,13 @@ const LargeCate = () => {
   useEffect(() => {
     fetch("/data/largeCatechism.json")
       .then((response) => response.json())
-      .then((data) => setLargeCatechism(data.largeCatechism))
+      .then((data) => {
+        console.log("✅ JSON 로드 성공:", data); // 데이터 출력
+        setLargeCatechism(data.largeCatechism);
+      })
       .catch((error) => console.error("🚨 JSON 로드 오류:", error));
   }, []);
+  
 
   // 🔍 검색어 입력 시 필터링
   const filteredQuestions = largeCatechism.filter((q) =>
@@ -32,8 +36,8 @@ const LargeCate = () => {
   return (
     <BackgroundWrapper type="white">
       <PageWrapper type="default">
-        <div className="shortcate-section-container">
-          <header className="shortcate-section-header">
+        <div className="large-section-container">
+          <header className="large-section-header">
             <div className="header-container">
               <img
                 src={IconBackButton} alt="뒤로 가기" className="back-button"
@@ -72,11 +76,11 @@ const LargeCate = () => {
         </div>
 
         {/* ✅ 문답 목록 */}
-        <main className="shortcate-container">
-          <p className="shortcate-title">웨스트민스터 소요리문답</p>
-          <ul className="shortcate-list">
+        <main className="large-container">
+          <p className="large-title">웨스트민스터 소요리문답</p>
+          <ul className="large-list">
             {filteredQuestions.map((q) => (
-              <p key={q.id} className="shortcate-item" onClick={() => navigate(`/shorter-catechism/${q.id}`)}>
+              <p key={q.id} className="large-item" onClick={() => navigate(`/large-catechism/${q.id}`)}>
                 <span className="pin">📌 </span>
                 <span className="question" style={{ whiteSpace: "normal", wordBreak: "break-word" }}>
                   {q.id}문 {q.question}
@@ -91,4 +95,4 @@ const LargeCate = () => {
   );
 };
 
-export default LargeCate;
+export default LargerCate;
